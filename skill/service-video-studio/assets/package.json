@@ -1,0 +1,9 @@
+{
+  "name": "service-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.9.72 check",
+    "render": "npx --yes hyperframes@0.9.72 render"
+  }
+}

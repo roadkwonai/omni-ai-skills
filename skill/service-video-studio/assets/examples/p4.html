@@ -1,0 +1,98 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #p4 { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    .o { color: #ff6600; }
+    .chap { position: absolute; left: 48px; top: 40px; background: #1f1e17; border-radius: 14px; padding: 12px 22px; font-size: 28px; font-weight: 700; z-index: 5; }
+    .chap i { color: #ff6600; font-style: normal; margin-right: 10px; }
+    .stage { position: absolute; inset: 0; background: #0c0b07; }
+    .plane { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    .plane img { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+    .ring { position: absolute; border: 6px solid #ff6600; border-radius: 16px; }
+    /* B 입력 모음 */
+    #b-t { position: absolute; left: 160px; top: 140px; font-size: 64px; font-weight: 800; letter-spacing: -0.03em; }
+    .src { position: absolute; left: 200px; width: 420px; height: 110px; border-radius: 20px; background: #1f1e17; border: 3px solid #38362b; display: flex; align-items: center; padding: 0 36px; font-size: 42px; font-weight: 700; }
+    #wires { position: absolute; inset: 0; }
+    #jev { position: absolute; left: 820px; top: 380px; width: 300px; height: 300px; border-radius: 50%; border: 7px solid #ff6600; display: flex; align-items: center; justify-content: center; font-size: 92px; font-weight: 900; background: #1b1a11; }
+    .chip { position: absolute; font-size: 46px; font-weight: 800; padding: 20px 40px; border-radius: 999px; background: #f3f4f5; color: #131209; white-space: nowrap; }
+    .chip.o { background: #ff6600; }
+    .chip.g { background: #3fb86b; color: #fff; }
+    .chip.r { background: #d9363e; color: #fff; }
+    /* C 관문 */
+    #scan { position: absolute; left: 120px; top: 120px; width: 8px; height: 520px; background: #ff6600; box-shadow: 0 0 40px 10px rgba(255,102,0,.6); }
+    #c-t { position: absolute; left: 160px; top: 700px; font-size: 52px; font-weight: 800; background: rgba(19,18,9,.9); padding: 14px 26px; border-radius: 14px; }
+    .gate { position: absolute; top: 820px; font-size: 44px; font-weight: 800; padding: 18px 36px; border-radius: 999px; background: #1f1e17; border: 3px solid #4a4638; white-space: nowrap; }
+    /* D 기록 카드 */
+    #d-t { position: absolute; left: 160px; top: 140px; font-size: 64px; font-weight: 800; letter-spacing: -0.03em; }
+    .rec { position: absolute; left: 260px; top: 420px !important; width: 1400px; height: 300px; border-radius: 28px; background: #f7f7f4; color: #131209; padding: 46px 56px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+    .rec .h { font-size: 30px; font-weight: 700; color: #6b6a63; }
+    .rec .m { font-size: 50px; font-weight: 800; margin: 14px 0 18px; }
+    .rec .w { font-size: 36px; color: #44413e; }
+    .rec .tag { position: absolute; right: 50px; top: 44px; font-size: 32px; font-weight: 800; padding: 8px 20px; border-radius: 10px; color: #fff; }
+  </style>
+  <div id="p4" data-composition-id="p4" data-width="1920" data-height="1080">
+    <div class="chap"><i>P4</i>Jev 실시간 판단</div>
+    <video id="vrec4" class="clip" src="assets/clips/p4.mp4" muted playsinline data-start="0" data-duration="4.6" data-media-start="0.5" style="position:absolute; inset:0; width:100%; height:100%; z-index:1"></video>
+    <div id="sb" class="clip" data-start="4.5" data-duration="6.4" data-hold>
+      <div id="b-t">Jev는 <span class="o">1분마다</span> 이것을 봅니다</div>
+      <svg id="wires" viewBox="0 0 1920 1080">
+        <path id="w0" d="M620 335 C 720 335, 760 480, 830 510" stroke="#ff6600" stroke-width="5" fill="none" />
+        <path id="w1" d="M620 475 C 720 475, 760 515, 822 525" stroke="#ff6600" stroke-width="5" fill="none" />
+        <path id="w2" d="M620 615 C 720 615, 760 560, 822 545" stroke="#ff6600" stroke-width="5" fill="none" />
+        <path id="w3" d="M620 755 C 720 755, 760 600, 830 565" stroke="#ff6600" stroke-width="5" fill="none" />
+        <path id="w4" d="M1120 530 H 1250" stroke="#ff6600" stroke-width="5" fill="none" />
+      </svg>
+      <div class="src" id="s0" style="top:280px">1분봉 차트</div>
+      <div class="src" id="s1" style="top:420px">최근 90분 뉴스</div>
+      <div class="src" id="s2" style="top:560px">수급</div>
+      <div class="src" id="s3" style="top:700px">시황</div>
+      <div id="jev">Jev</div>
+      <div class="chip" id="k0" style="left:1270px;top:400px">종목 KODEX 인버스</div>
+      <div class="chip o" id="k1" style="left:1270px;top:540px">신뢰도 0.50</div>
+    </div>
+    <video id="vgate" class="clip" src="assets/clips/P4Gates.mp4" muted playsinline data-start="10.8" data-duration="7.15" style="position:absolute; inset:0; width:100%; height:100%; z-index:1"></video>
+    <div id="sd" class="clip" data-start="17.9" data-duration="7.11" data-hold>
+      <div id="d-t">판단 근거는 <span class="o">매번 기록</span>됩니다</div>
+      <div class="rec" data-layout-allow-overlap data-layout-allow-occlusion id="r0" style="top:330px"><div class="tag" style="background:#3fb86b">매수</div><div class="h">11-20 09:13:49 · 모의계좌</div><div class="m">한진칼 2주 · 관심종목 강도</div><div class="w">Jev 확률 0.31 · 오늘 +6.01%</div></div>
+      <div class="rec" data-layout-allow-overlap data-layout-allow-occlusion id="r1" style="top:330px"><div class="tag" style="background:#3fb86b">매수</div><div class="h">11-20 10:42:27 · 모의계좌</div><div class="m">KODEX 인버스 180주 · Jev 후보</div><div class="w">Jev 후보 INV 신뢰도 0.50</div></div>
+      <div class="rec" data-layout-allow-overlap data-layout-allow-occlusion id="r2" style="top:330px"><div class="tag" style="background:#d9363e">막힘</div><div class="h">11-20 차트 기록 · 진입 차단</div><div class="m">KODEX 인버스 · inverse_too_late</div><div class="w">Jev매수 0.57 신뢰도 충족 · 지수가 이미 많이 빠져 늦음</div></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const rev = (sel, at, d = 0.55) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    const cam = (pl, [x, y, w, h], s, at, d = 0.9, ease = "power3.inOut") =>
+      tl.to(pl, { x: 960 - (x + w / 2) * s, y: 540 - (y + h / 2) * s, scale: s, duration: d, ease }, at);
+    const draw = (sel, at, d = 0.4) => { const p = document.querySelector(sel), L = p.getTotalLength(); tl.fromTo(sel, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, at); };
+
+    // A: 실제 녹화 — '전략 구조' 탭을 눌러 도식이 열림(assets/clips/p4.mp4 0.5초부터)
+    tl.to("#vrec4", { opacity: 0, duration: 0.3 }, 4.3);
+
+    // B: 네 입력이 곡선을 타고 Jev로 모여(bezier-source-converge) 종목·신뢰도 칩
+    rev("#b-t", 4.7);
+    tl.from("#jev", { opacity: 0, scale: 0.6, duration: 0.5, ease: "back.out(1.8)" }, 5.25);
+    [[0, 6.45], [1, 6.9], [2, 8.2], [3, 8.55]].forEach(([i, at]) => {
+      tl.from("#s" + i, { opacity: 0, x: -60, duration: 0.35, ease: "power3.out" }, at);
+      draw("#w" + i, at + 0.15);
+    });
+    tl.to("#jev", { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1 }, 8.95);
+    draw("#w4", 9.1, 0.25);
+    tl.from("#k0", { opacity: 0, x: -40, duration: 0.35, ease: "back.out(2)" }, 9.2);
+    tl.from("#k1", { opacity: 0, x: -40, duration: 0.35, ease: "back.out(2)" }, 9.5);
+    tl.to("#sb", { opacity: 0, duration: 0.3 }, 10.6);
+
+    // C: video-shotcraft spotlight(SpotTour P4Gates) — 실제 Jev 차트의 진입 차단 기록을 단어마다 비춤
+    tl.to("#vgate", { opacity: 0, duration: 0.3 }, 17.7);
+
+    // D: 판단 기록 카드가 쌓이며 넘어감 — 왜 샀는지(매수 두 장), 왜 막혔는지(막힘)
+    rev("#d-t", 18.1);
+    tl.from("#r0", { opacity: 0, y: 120, duration: 0.5, ease: "power3.out" }, 19.0);
+    tl.from("#r1", { opacity: 0, y: 120, duration: 0.5, ease: "power3.out" }, 20.9);
+    tl.to("#r0", { y: -90, backgroundColor: "#cfcec6", duration: 0.5, ease: "power3.out" }, 20.9);
+    tl.from("#r2", { opacity: 0, y: 120, duration: 0.5, ease: "power3.out" }, 21.95);
+    tl.to("#r0", { y: -180, backgroundColor: "#a9a8a0", duration: 0.5 }, 21.95);
+    tl.to("#r1", { y: -90, backgroundColor: "#cfcec6", duration: 0.5, ease: "power3.out" }, 21.95);
+    window.__timelines["p4"] = tl;
+  </script>
+</template>

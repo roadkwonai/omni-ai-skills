@@ -1,0 +1,104 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #p1 { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    .o { color: #ff6600; }
+    .chap { position: absolute; left: 48px; top: 40px; background: #1f1e17; border-radius: 14px; padding: 12px 22px; font-size: 28px; font-weight: 700; }
+    .chap i { color: #ff6600; font-style: normal; margin-right: 10px; }
+    .big { position: absolute; left: 160px; top: 230px; font-size: 300px; font-weight: 900; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .big small { font-size: 120px; letter-spacing: -0.02em; }
+    .say { position: absolute; left: 166px; top: 600px; font-size: 56px; font-weight: 700; color: #c9cbd0; }
+    .say b { color: #ff6600; }
+    .cite { position: absolute; left: 166px; top: 860px; font-size: 28px; color: #8a8d93; }
+    #grid { position: absolute; left: 160px; right: 160px; top: 150px; bottom: 150px; background-image: linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: calc(100% / 12) 100%; }
+    /* 막대 */
+    #bars-t { position: absolute; left: 160px; top: 200px; font-size: 64px; font-weight: 800; letter-spacing: -0.03em; }
+    .bar { position: absolute; left: 160px; height: 120px; border-radius: 10px; transform-origin: left center; }
+    .bl { position: absolute; left: 160px; font-size: 34px; font-weight: 600; color: #b0b3ba; }
+    .bv { position: absolute; font-size: 72px; font-weight: 900; }
+    /* 비교 */
+    .row { position: absolute; left: 160px; right: 160px; display: grid; grid-template-columns: 220px 1fr 1fr; font-size: 48px; padding: 32px 0; border-bottom: 2px solid #33322c; }
+    .row.h { font-size: 34px; color: #8a8d93; font-weight: 700; }
+        #fin { position: absolute; left: 160px; top: 720px; font-size: 76px; font-weight: 900; letter-spacing: -0.03em; }
+  </style>
+  <div id="p1" data-composition-id="p1" data-width="1920" data-height="1080">
+    <div id="grid"></div>
+    <div class="chap"><i>P1</i>왜 AI인가</div>
+    <div id="s4" class="clip" data-start="0" data-duration="3.9" data-hold>
+      <div class="big" id="n15">0.0<small>배</small></div>
+      <div class="say" id="say4">개인은 오른 종목을 내린 종목보다 <b>1.5배</b> 쉽게 팝니다</div>
+      <div class="cite">Odean (1998) · 이익 실현 14.8% vs 손실 실현 9.8%</div>
+    </div>
+    <div id="s5" class="clip" data-start="3.9" data-duration="3.9" data-hold>
+      <div id="bars-t">자주 사고판 사람 vs 시장 <span class="o">(연 수익률)</span></div>
+      <div class="bl" style="top:380px">가장 자주 사고판 가구</div>
+      <div class="bar" id="b1" style="top:430px;width:700px;background:#ff6600"></div>
+      <div class="bv" id="v1" style="left:890px;top:440px">11.4%</div>
+      <div class="bl" style="top:610px">같은 기간 시장</div>
+      <div class="bar" id="b2" style="top:660px;width:1100px;background:#f3f4f5"></div>
+      <div class="bv" id="v2" style="left:1290px;top:670px">17.9%</div>
+      <div class="cite">Barber · Odean (2000)</div>
+    </div>
+    <div id="s6" class="clip" data-start="7.8" data-duration="3.75" data-hold>
+      <div class="big" id="n1">1%<small> 미만</small></div>
+      <div class="say" id="say6">꾸준히 이기는 <b>단타</b>의 비율</div>
+      <div class="cite">Barber · Lee · Liu · Odean (2014)</div>
+    </div>
+    <div id="s7" class="clip" data-start="11.55" data-duration="3.25" data-hold>
+      <div class="big" id="n46">0%</div>
+      <div class="say" id="say7">손실을 본 개인 투자자 (2020년)</div>
+      <div class="cite">자본시장연구원 웨비나 (2021)</div>
+    </div>
+    <div id="s8" class="clip" data-start="14.8" data-duration="6.68" data-hold>
+      <div class="row h" id="r0" style="top:200px"><span></span><span>사람은</span><span class="o">Omni는</span></div>
+      <div class="row" id="r1" style="top:290px"><span>손절</span><span>"조금만 더" 하며 버팀</span><span>손절선에 닿으면 1분 안에 매도</span></div>
+      <div class="row" id="r2" style="top:420px"><span>익절</span><span>조금 오르면 불안해 다 팜</span><span>절반 먼저, 나머지는 추세대로</span></div>
+      <div id="fin">그래서 판단을 <span class="o" id="fin-o">규칙과 AI</span>에게 맡겼습니다</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const rev = (sel, at, d = 0.55) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    const count = (sel, to, fmt, at, d = 0.9) => {
+      const el = document.querySelector(sel), o = { v: 0 };
+      tl.to(o, { v: to, duration: d, ease: "power3.out", onUpdate: () => { el.innerHTML = fmt(o.v); } }, at);
+    };
+    const out = (sel, at) => tl.to(sel, { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, at);
+    tl.from("#grid", { opacity: 0, duration: 0.6 }, 0);
+    // 1.5배: 자릿수가 굴러가다 멈춤
+    tl.from("#n15", { opacity: 0, y: 60, duration: 0.4, ease: "power3.out" }, 0.7);
+    count("#n15", 1.5, (v) => v.toFixed(1) + "<small>배</small>", 0.8, 0.8);
+    rev("#say4", 1.4);
+    tl.from("#s4 .cite", { opacity: 0, duration: 0.4 }, 2.0);
+    out("#s4 > *", 3.55);
+    // 막대: 실제 비율로 자라고, '낮았습니다'에서 축이 한 번 출렁(axis-rescale-shock)
+    rev("#bars-t", 4.1);
+    tl.from("#b1", { scaleX: 0, duration: 0.8, ease: "power3.out" }, 4.6);
+    tl.from("#b2", { scaleX: 0, duration: 0.8, ease: "power3.out" }, 4.8);
+    tl.from(["#v1", "#v2"], { opacity: 0, duration: 0.3, stagger: 0.2 }, 5.3);
+    tl.to(["#b1", "#b2"], { scaleX: 1.08, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 6.1);
+    tl.to("#b1", { backgroundColor: "#d9363e", duration: 0.3 }, 6.15);
+    out("#s5 > *", 7.5);
+    // 1% 미만: 쾅 찍히고 화면이 흔들림(slam)
+    tl.fromTo("#n1", { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.in" }, 9.15);
+    tl.to("#p1", { x: 10, duration: 0.05, yoyo: true, repeat: 5 }, 9.5);
+    rev("#say6", 8.3);
+    tl.from("#s6 .cite", { opacity: 0, duration: 0.4 }, 9.8);
+    out("#s6 > *", 11.25);
+    // 46%: 굴러 올라가고 46에서 주황
+    tl.from("#n46", { opacity: 0, duration: 0.2 }, 11.7);
+    count("#n46", 46, (v) => Math.round(v) + "%", 11.85, 1.0);
+    tl.to("#n46", { color: "#ff6600", duration: 0.3 }, 12.85);
+    rev("#say7", 13.1);
+    tl.from("#s7 .cite", { opacity: 0, duration: 0.4 }, 13.4);
+    out("#s7 > *", 14.5);
+    // 비교 표: 줄마다 칼로 자르듯 열림(swiss clip-reveal)
+    rev("#r0", 14.95);
+    rev("#r1", 15.2, 0.6);
+    rev("#r2", 16.4, 0.6);
+    rev("#fin", 17.4, 0.6);
+    tl.fromTo("#fin-o", { color: "#f3f4f5" }, { color: "#ff6600", duration: 0.35 }, 18.4);
+    window.__timelines["p1"] = tl;
+  </script>
+</template>

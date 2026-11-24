@@ -1,0 +1,132 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #p5 { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    .o { color: #ff6600; }
+    .chap { position: absolute; left: 48px; top: 40px; background: #1f1e17; border-radius: 14px; padding: 12px 22px; font-size: 28px; font-weight: 700; }
+    .chap i { color: #ff6600; font-style: normal; margin-right: 10px; }
+    /* A 가드 단면도 */
+    #a-big { position: absolute; left: 0; right: 0; top: 380px; text-align: center; font-size: 170px; font-weight: 900; letter-spacing: -0.04em; }
+    #a-title { position: absolute; left: 160px; top: 140px; font-size: 64px; font-weight: 800; letter-spacing: -0.03em; }
+    #rail { position: absolute; left: 160px; right: 160px; top: 612px; height: 6px; background: #38362b; border-radius: 3px; }
+    .gate { position: absolute; top: 400px; width: 230px; height: 430px; border: 4px solid #4a4638; border-radius: 22px; background: rgba(31,30,23,.7); }
+    .gate .lb { position: absolute; left: -20px; right: -20px; bottom: -84px; text-align: center; font-size: 34px; font-weight: 700; color: #b0b3ba; white-space: nowrap; }
+    .gate .no { position: absolute; left: 0; right: 0; top: 24px; text-align: center; font-size: 30px; font-weight: 800; color: #6c6a5f; }
+    .ord { position: absolute; top: 588px; height: 54px; padding: 0 26px; border-radius: 999px; font-size: 30px; font-weight: 800; display: flex; align-items: center; background: #f3f4f5; color: #131209; white-space: nowrap; }
+    .ord.r { background: #d9363e; color: #fff; }
+    .ord.g { background: #ff6600; color: #fff; }
+    #exit { position: absolute; right: 110px; top: 500px; font-size: 40px; font-weight: 900; color: #ff6600; }
+    /* B 스위치 */
+    #b-title { position: absolute; left: 160px; top: 140px; font-size: 64px; font-weight: 800; letter-spacing: -0.03em; }
+    .sw { position: absolute; top: 380px; width: 300px; text-align: center; }
+    .tr { position: relative; margin: 0 auto; width: 220px; height: 112px; border-radius: 999px; background: #38362b; }
+    .th { position: absolute; left: 11px; top: 11px; width: 90px; height: 90px; border-radius: 50%; background: #b0b3ba; }
+    .sw .lb { margin-top: 34px; font-size: 38px; font-weight: 700; }
+    #lamp { position: absolute; left: 760px; top: 660px; width: 400px; height: 130px; border-radius: 999px; background: #2a281f; color: #8f8c80; font-size: 64px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+    #lamp-glow { position: absolute; left: 760px; top: 660px; width: 400px; height: 130px; border-radius: 999px; box-shadow: 0 0 140px 40px #ff6600; opacity: 0; }
+    /* C 한도 */
+    #c-title { position: absolute; left: 120px; top: 140px; font-size: 56px; font-weight: 800; letter-spacing: -0.03em; }
+    .lim { position: absolute; left: 120px; width: 560px; height: 130px; border-radius: 20px; background: #1f1e17; border: 2px solid #38362b; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; }
+    .lim b { font-size: 40px; }
+    .lim em { font-style: normal; font-size: 50px; font-weight: 900; color: #ff6600; }
+    .lock { position: absolute; right: -26px; top: -26px; width: 64px; height: 64px; border-radius: 50%; background: #ff6600; color: #131209; font-size: 30px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+    #shot { position: absolute; left: 760px; top: 140px; width: 1040px; height: 740px; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 90px #000; }
+    #shot img { position: absolute; left: -330px; top: -150px; width: 1920px; }
+    .hl { position: absolute; border: 6px solid #ff6600; border-radius: 16px; }
+    .hl span { position: absolute; left: 0; top: -58px; background: #ff6600; color: #131209; font-size: 30px; font-weight: 800; padding: 6px 18px; border-radius: 10px; white-space: nowrap; }
+  </style>
+  <div id="p5" data-composition-id="p5" data-width="1920" data-height="1080">
+    <div class="chap"><i>P5</i>안전장치</div>
+    <div id="sa" class="clip" data-start="0" data-duration="11.9" data-hold>
+      <div id="a-big">AI도 <span class="o">틀립니다</span></div>
+      <div id="a-title">그래서 주문은 <span class="o">여러 겹의 가드</span>를 지납니다</div>
+      <div id="rail"></div>
+      <div class="gate" id="g0" style="left:380px"><div class="no">1</div><div class="lb" data-layout-allow-overflow>정지 파일</div></div>
+      <div class="gate" id="g1" style="left:700px"><div class="no">2</div><div class="lb" data-layout-allow-overflow>연속 손실 뒤 휴식</div></div>
+      <div class="gate" id="g2" style="left:1020px"><div class="no">3</div><div class="lb" data-layout-allow-overflow>매 회차 잔고 대조</div></div>
+      <div class="gate" id="g3" style="left:1340px"><div class="no">4</div><div class="lb" data-layout-allow-overflow>주문 가드</div></div>
+      <div class="ord r" id="o0" style="left:160px">✕ STOP</div>
+      <div class="ord r" id="o1" style="left:160px">✕ 연속 손실</div>
+      <div class="ord r" id="o2" style="left:160px">✕ 잔고 불일치</div>
+      <div class="ord r" id="o3" style="left:160px">✕ 한도 초과</div>
+      <div class="ord g" id="o4" style="left:160px">주문</div>
+      <div id="exit">증권사 →</div>
+    </div>
+    <div id="sb" class="clip" data-start="11.8" data-duration="7.6" data-hold>
+      <div id="b-title">실계좌는 <span class="o">네 가지가 모두</span> 맞아야 주문합니다</div>
+      <div class="sw" style="left:180px"><div class="tr" id="t0"><div class="th" id="h0"></div></div><div class="lb" data-layout-allow-overflow>실행 플래그</div></div>
+      <div class="sw" style="left:600px"><div class="tr" id="t1"><div class="th" id="h1"></div></div><div class="lb" data-layout-allow-overflow>자동매매</div></div>
+      <div class="sw" style="left:1020px"><div class="tr" id="t2"><div class="th" id="h2"></div></div><div class="lb" data-layout-allow-overflow>실주문 스위치</div></div>
+      <div class="sw" style="left:1440px"><div class="tr" id="t3"><div class="th" id="h3"></div></div><div class="lb" data-layout-allow-overflow>정지 해제</div></div>
+      <div id="lamp-glow"></div>
+      <div id="lamp">실주문</div>
+    </div>
+    <div id="sc" class="clip" data-start="19.3" data-duration="9.78" data-hold>
+      <div id="c-title">켜진 뒤에도 <span class="o">그대로</span></div>
+      <div class="lim" id="l0" style="top:290px"><b>운용금</b><em>계좌별</em><div class="lock">✓</div></div>
+      <div class="lim" id="l1" style="top:445px"><b>하루 손실</b><em>2만 원</em><div class="lock">✓</div></div>
+      <div class="lim" id="l2" style="top:600px"><b>1회 한도</b><em>계좌별</em><div class="lock">✓</div></div>
+      <div class="lim" id="l3" style="top:755px"><b>미체결</b><em>차단</em><div class="lock">✓</div></div>
+      <div id="shot"><img src="assets/img/limits.jpg" alt="" />
+        <div class="hl" id="hl0" style="left:36px;top:60px;width:290px;height:104px"><span>끌 수 있는 규칙</span></div>
+        <div class="hl" id="hl1" style="left:628px;top:60px;width:290px;height:104px"><span>늘 켜진 규칙</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const rev = (sel, at, d = 0.55) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    const GX = [380, 700, 1020, 1340];
+
+    // A: 'AI도 틀립니다' 한 번 크게 → 단면도. 단어가 나올 때마다 그 문이 켜지고 주문 하나가 거기서 막힘
+    rev("#a-big", 0.75, 0.6);
+    tl.to("#a-big", { opacity: 0, y: -80, duration: 0.45, ease: "power2.in" }, 2.3);
+    rev("#a-title", 2.6);
+    tl.from("#rail", { scaleX: 0, transformOrigin: "left center", duration: 0.8, ease: "power2.inOut" }, 2.8);
+    [0, 1, 2, 3].forEach((i) => tl.from("#g" + i, { opacity: 0, y: 60, duration: 0.45, ease: "power3.out" }, 3.0 + i * 0.12));
+    tl.set(["#o0", "#o1", "#o2", "#o3", "#o4"], { opacity: 0 }, 0);
+    const block = (i, at) => {
+      tl.to("#g" + i, { borderColor: "#ff6600", duration: 0.2 }, at);
+      tl.to("#g" + i + " .lb", { color: "#f3f4f5", duration: 0.2 }, at);
+      const w = document.querySelector("#o" + i).offsetWidth; // 칩이 문 왼쪽 테두리에 걸려 멈춤
+      tl.fromTo("#o" + i, { opacity: 1, x: 0 }, { x: GX[i] - 160 - w / 2, duration: 0.55, ease: "power2.in" }, at);
+      tl.to("#g" + i, { x: 8, duration: 0.05, yoyo: true, repeat: 3 }, at + 0.55);
+      tl.to("#o" + i, { opacity: 0, y: 70, duration: 0.4, ease: "power2.in" }, at + 1.6);
+    };
+    block(0, 5.25); block(1, 6.3); block(2, 7.85); block(3, 9.4);
+    // '막습니다' 뒤: 통과한 주문만 오른쪽으로 나감
+    tl.fromTo("#o4", { opacity: 1, x: 0 }, { x: 1440, duration: 1.0, ease: "power2.inOut" }, 10.6);
+    tl.from("#exit", { opacity: 0, x: -30, duration: 0.4 }, 11.1);
+
+    // B: 스위치 4개가 단어에 맞춰 켜지고, 넷 다 켜져야 '실주문' 램프. 하나 끄면 꺼짐
+    rev("#b-title", 12.0);
+    const on = (i, at) => {
+      tl.to("#h" + i, { x: 108, backgroundColor: "#ffffff", duration: 0.3, ease: "back.out(1.6)" }, at);
+      tl.to("#t" + i, { backgroundColor: "#ff6600", duration: 0.3 }, at);
+    };
+    on(0, 12.6); on(1, 13.8); on(2, 14.9); on(3, 15.9);
+    const lamp = (at, v) => {
+      tl.to("#lamp", { backgroundColor: v ? "#ff6600" : "#2a281f", color: v ? "#131209" : "#8f8c80", duration: 0.25 }, at);
+      tl.to("#lamp-glow", { opacity: v ? 0.9 : 0, duration: 0.25 }, at);
+    };
+    lamp(17.25, 1);
+    tl.to("#h2", { x: 0, backgroundColor: "#b0b3ba", duration: 0.25 }, 18.1);
+    tl.to("#t2", { backgroundColor: "#38362b", duration: 0.25 }, 18.1);
+    lamp(18.15, 0);
+    on(2, 18.7);
+    lamp(18.8, 1);
+
+    // C: 한도가 단어에 맞춰 박히고(value-stagger), '그대로'에서 잠금 표시, 규칙 화면에서 두 묶음을 비춤
+    rev("#c-title", 19.6);
+    [[0, 20.35], [1, 21.3], [2, 22.45], [3, 23.2]].forEach(([i, at]) => tl.from("#l" + i, { opacity: 0, x: -80, duration: 0.45, ease: "power3.out" }, at));
+    tl.set(".lock", { scale: 0 }, 0);
+    tl.to(".lock", { scale: 1, duration: 0.35, ease: "back.out(2.5)", stagger: 0.08 }, 24.1);
+    tl.from("#shot", { opacity: 0, x: 120, duration: 0.7, ease: "power3.out" }, 24.4);
+    tl.from("#hl0", { opacity: 0, scale: 1.25, duration: 0.35, ease: "power3.out" }, 25.2);
+    tl.from("#hl1", { opacity: 0, scale: 1.25, duration: 0.35, ease: "power3.out" }, 26.2);
+    tl.to("#shot img", { x: -40, y: -20, duration: 4.5, ease: "none" }, 24.4);
+    tl.to("#shot .hl", { x: -40, y: -20, duration: 4.5, ease: "none" }, 24.4);
+    window.__timelines["p5"] = tl;
+  </script>
+</template>

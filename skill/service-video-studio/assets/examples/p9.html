@@ -1,0 +1,55 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #p9 { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    .o { color: #ff6600; }
+    .tile { position: absolute; width: 470px; height: 264px; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px #000; }
+    .tile img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
+    #line { position: absolute; left: 0; right: 0; top: 460px; text-align: center; font-size: 76px; font-weight: 900; letter-spacing: -0.03em; }
+    #lock { position: absolute; left: 160px; top: 300px; display: flex; align-items: center; gap: 40px; }
+    #lock img { width: 170px; }
+    #name { font-size: 140px; font-weight: 900; letter-spacing: -0.04em; white-space: nowrap; }
+    #mascot { position: absolute; right: 150px; top: 520px; width: 320px; border-radius: 36px; }
+    #stack { position: absolute; left: 164px; top: 560px; font-size: 32px; color: #b0b3ba; }
+    #gh { position: absolute; left: 164px; top: 630px; font-size: 40px; font-weight: 800; }
+    #disc { position: absolute; left: 164px; top: 760px; font-size: 28px; color: #8a8d93; }
+  </style>
+  <div id="p9" data-composition-id="p9" data-width="1920" data-height="1080">
+    <div id="sa" class="clip" data-start="0" data-duration="5.2" data-hold>
+      <div class="tile" id="t0" style="left:120px;top:110px"><img src="assets/img/ov.jpg" alt="" /></div>
+      <div class="tile" id="t1" style="left:700px;top:90px"><img src="assets/img/chart.jpg" alt="" /></div>
+      <div class="tile" id="t2" style="left:1280px;top:110px"><img src="assets/img/ndx.jpg" alt="" /></div>
+      <div class="tile" id="t3" style="left:120px;top:640px"><img src="assets/img/journal.jpg" alt="" /></div>
+      <div class="tile" id="t4" style="left:700px;top:650px"><img src="assets/img/trades.jpg" alt="" /></div>
+      <div class="tile" id="t5" style="left:1280px;top:640px"><img src="assets/img/replist.jpg" alt="" /></div>
+      <div id="line">AI가 판단을 돕고,<br /><span class="o">사람이 승인한 규칙</span>이 주문을 정합니다</div>
+    </div>
+    <div id="sb" class="clip" data-start="5.1" data-duration="5.74" data-hold>
+      <div id="lock"><img id="logo" src="assets/img/omni-logo.png" alt="" /><div id="name">Omni AI Trading</div></div>
+      <img id="mascot" src="assets/img/mascot-principle.png" alt="" />
+      <div id="stack">Python · Streamlit · SQLite · NH 나무 PLUG · Jev · Claude Code · HyperFrames</div>
+      <div id="gh">github.com/roadkwonai/omni-ai-trading</div>
+      <div id="disc">투자 권유가 아닙니다. AI 판단과 모의·가상 결과는 미래 수익을 보장하지 않습니다.</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const rev = (sel, at, d = 0.6) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    // A: 화면 조각들이 둘러싼 채 핵심 문장 → 조각들이 빠져나감(ui-strip-away)
+    tl.from(".tile", { opacity: 0, scale: 0.85, duration: 0.5, stagger: 0.07, ease: "power3.out" }, 0);
+    rev("#line", 0.8);
+    tl.to("#t0, #t3", { x: -700, opacity: 0, duration: 0.6, ease: "power3.in" }, 4.2);
+    tl.to("#t2, #t5", { x: 700, opacity: 0, duration: 0.6, ease: "power3.in" }, 4.2);
+    tl.to("#t1", { y: -500, opacity: 0, duration: 0.6, ease: "power3.in" }, 4.25);
+    tl.to("#t4", { y: 500, opacity: 0, duration: 0.6, ease: "power3.in" }, 4.25);
+    tl.to("#line", { scale: 0.6, opacity: 0, duration: 0.5, ease: "power3.in" }, 4.6);
+    // B: 로고가 들어오고 이름이 옆에 붙음(logo-shrink-wordmark-lockup)
+    tl.fromTo("#logo", { scale: 3, x: 700, rotation: -120, opacity: 0 }, { scale: 1, x: 0, rotation: 0, opacity: 1, duration: 0.8, ease: "expo.out" }, 5.2);
+    tl.fromTo("#name", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 -5% 0 0)", duration: 0.6, ease: "power4.inOut" }, 5.75);
+    tl.from("#mascot", { opacity: 0, y: 60, duration: 0.6, ease: "back.out(1.6)" }, 6.4);
+    tl.from(["#stack", "#gh"], { opacity: 0, y: 20, duration: 0.4, stagger: 0.15 }, 7.6);
+    tl.from("#disc", { opacity: 0, duration: 0.4 }, 8.3);
+    window.__timelines["p9"] = tl;
+  </script>
+</template>

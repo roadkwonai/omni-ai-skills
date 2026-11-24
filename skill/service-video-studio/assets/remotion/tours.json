@@ -1,0 +1,6 @@
+{
+  "Example": { "src": "screen.jpg", "frames": 120, "accent": "#ff6600", "stops": [
+    { "x": 380, "y": 300, "w": 350, "h": 120, "t": 0.6, "label": "말하는 칸의 이름", "zoom": 1.7, "lift": true },
+    { "x": 760, "y": 300, "w": 700, "h": 300, "t": 2.0, "label": "다음 칸" }
+  ] }
+}

@@ -1,0 +1,38 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #%ID% { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    #%ID% .o { color: %ACCENT%; }
+    /* 파트 이름표: 짧은 영상이거나 제품 로고를 가리면 지우거나 오른쪽 위로 옮긴다 */
+    #%ID% .chap { position: absolute; left: 48px; top: 40px; background: #1f1e17; border-radius: 14px; padding: 12px 22px; font-size: 28px; font-weight: 700; z-index: 5; }
+    #%ID% .chap i { color: %ACCENT%; font-style: normal; margin-right: 10px; }
+    /* 자막이 아래 80~150px를 쓴다: 중요한 것은 y 900 위에 둔다 */
+    #%ID% .title { position: absolute; left: 160px; top: 380px; font-size: 96px; font-weight: 800; letter-spacing: -0.03em; }
+  </style>
+  <div id="%ID%" data-composition-id="%ID%" data-width="1920" data-height="1080">
+    <div class="chap"><i>%PART%</i>%NAME%</div>
+    <!-- 실제 녹화: 장면 바로 아래에 둔다(div로 감싼 timed video는 렌더되지 않는다)
+    <video id="%ID%-rec" class="clip" src="assets/clips/x.mp4" muted playsinline data-start="0" data-duration="3" data-media-start="0.5" style="position:absolute; inset:0; width:100%; height:100%; z-index:1"></video> -->
+    <div id="%ID%-a" class="clip" data-start="0" data-duration="%DUR%" data-hold>
+      <div class="title" id="%ID%-t">%NAME%</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    // 글자 등장: 아래에서 잘려 올라온다(swiss). 페이드 대신 이것 하나로 통일
+    const rev = (sel, at, d = 0.55) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    const out = (sel, at) => tl.to(sel, { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, at);
+    // 숫자 굴림
+    const count = (sel, to, fmt, at, d = 0.9) => { const el = document.querySelector(sel), o = { v: 0 }; tl.to(o, { v: to, duration: d, ease: "power3.out", onUpdate: () => { el.innerHTML = fmt(o.v); } }, at); };
+    // 선 그리기(svg path)
+    const draw = (sel, at, d = 0.4) => { const L = document.querySelector(sel).getTotalLength(); tl.fromTo(sel, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, at); };
+    // 1920×1080 화면 이미지(plane)의 칸 [x,y,w,h]를 가운데로 — left/top이 아니라 x/y로 움직인다(lint)
+    const cam = (pl, [x, y, w, h], s, at, d = 0.9) => tl.to(pl, { x: 960 - (x + w / 2) * s, y: 540 - (y + h / 2) * s, scale: s, duration: d, ease: "power3.inOut" }, at);
+    // 도장·쾅
+    const slam = (sel, at) => tl.fromTo(sel, { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.in" }, at);
+
+    rev("#%ID%-t", 0.2); // 시각은 words.py 출력의 +초(장면 시작 기준). 말보다 0.15~0.2초 먼저
+    window.__timelines["%ID%"] = tl;
+  </script>
+</template>

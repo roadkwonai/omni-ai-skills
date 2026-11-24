@@ -1,0 +1,105 @@
+{
+ "bgm": {
+  "tonight-hiphop": {
+   "title": "Tonight — Michael Ramir C.",
+   "style": "힙합 103 BPM",
+   "lufs": -6.8,
+   "mood": "calm",
+   "note": "차분한 서비스·포트폴리오 소개(기준작)"
+  },
+  "g-eazy-nba-type": {
+   "title": "G Eazy NBA type — Arulo",
+   "style": "힙합 86 BPM",
+   "lufs": -16.4,
+   "mood": "heavy",
+   "note": "느리고 묵직한 문제 제기·기술 이야기"
+  },
+  "house-vibez": {
+   "title": "House Vibez — Lily J",
+   "style": "하우스 123 BPM",
+   "lufs": -10.8,
+   "mood": "bright",
+   "note": "경쾌한 앱·생활 서비스"
+  },
+  "cat-walk": {
+   "title": "Cat Walk — Arulo",
+   "style": "하우스 129 BPM",
+   "lufs": -11.9,
+   "mood": "fast",
+   "note": "빠른 하이라이트·짧은 홍보"
+  }
+ },
+ "kit": {
+  "clean": {
+   "mood": [
+    "calm",
+    "heavy"
+   ],
+   "note": "ffmpeg로 합성한 절제된 소리(기준작)",
+   "files": {}
+  },
+  "soft": {
+   "mood": [
+    "bright"
+   ],
+   "note": "부드러운 공기 전환 + 합성 소리",
+   "files": {
+    "whoosh": "transition-soft"
+   }
+  },
+  "cinematic": {
+   "mood": [
+    "fast"
+   ],
+   "note": "빠른 휙 소리와 묵직한 충격음",
+   "files": {
+    "whoosh": "whoosh-fast",
+    "tick": "click-camera",
+    "thud": "impact-cine",
+    "pop": "swoosh-quick"
+   }
+  }
+ },
+ "files": {
+  "bgm/tonight-hiphop": {
+   "url": "https://assets.mixkit.co/music/841/841.mp3",
+   "sha256": "d5166b70a80bb4b42a6ff1713d3e36b2ab3bdf55edda89f573454e060ac7819e"
+  },
+  "bgm/g-eazy-nba-type": {
+   "url": "https://assets.mixkit.co/music/403/403.mp3",
+   "sha256": "53f36075bca2aae5db288be815447fb36dc38227e45f248138bd1c75f1251830"
+  },
+  "bgm/house-vibez": {
+   "url": "https://assets.mixkit.co/music/745/745.mp3",
+   "sha256": "eff4aceea32ed5f9651673cedfd86f5b2de143dd865f56d7b5c79d43dd9e81f5"
+  },
+  "bgm/cat-walk": {
+   "url": "https://assets.mixkit.co/music/371/371.mp3",
+   "sha256": "e241cba000ce12e52cadd4c9956274e391ef1f66d1e48a5dd40bfc21645aa489"
+  },
+  "sfx/click-camera": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/1133/1133-preview.mp3",
+   "sha256": "042d01db7a4a0c492c580c0d3d64460c0ceb8638f0c6419d0e4b7a9ba2ac8eed"
+  },
+  "sfx/transition-soft": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/2608/2608-preview.mp3",
+   "sha256": "0e25921648c66e30924892ee17110ae621243de770b2944496526845a15a9998"
+  },
+  "sfx/transition-snap": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/3115/3115-preview.mp3",
+   "sha256": "9f7e4edb094569f9cb40e8dbb987a5fc20926b30326a1a9d827236960980f070"
+  },
+  "sfx/swoosh-quick": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/166/166-preview.mp3",
+   "sha256": "5d8153579cfbd4ec23738494dff8dec95b3737981578222b793eff9e3fdd4ca8"
+  },
+  "sfx/whoosh-fast": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/1490/1490-preview.mp3",
+   "sha256": "b88fd5d484251930efd6eca78c4340339908ea29d1e69bd24fb5191a10da4f78"
+  },
+  "sfx/impact-cine": {
+   "url": "https://assets.mixkit.co/active_storage/sfx/1143/1143-preview.mp3",
+   "sha256": "9854bff8a78fcebef95350ff0ec72a41ba449ab372bbd601b55d84de13bd626d"
+  }
+ }
+}
