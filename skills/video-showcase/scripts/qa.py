@@ -90,6 +90,11 @@ def main():
         t = round((w["start"] + w["end"]) / 2 + 0.05, 2)
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", t, "-i", v, "-frames:v", "1", "-vf", "crop=iw:200:0:ih-240", Q / "sync" / f"{t:07.2f}s.jpg"])
         sync.append(f"{t}초 → 강조 단어가 '{w['text']}'이어야 함")
+    engine = d.get("voice_engine", "fish-api")
+    if engine == "s2-pro":
+        note.append("내레이션이 S2 Pro — 연구·비상업만. 수익이 목적이거나 광고가 붙는 영상이면 drama-3로 다시 만든다")
+    if engine in ("s2-pro", "drama-3"):
+        note.append("로컬 음성 — 게시할 때 AI 음성 사용을 표시하고 설명에 'Built with Fish Audio'를 넣기를 권함")
     print(f"{v}: {dur(v):.2f}초, {I} LUFS, 최고 {peak} dBFS, 프레임 {len(at)}장 → {Q}/sheet-*.jpg")
     for s in sync:
         print("  자막 확인", s)

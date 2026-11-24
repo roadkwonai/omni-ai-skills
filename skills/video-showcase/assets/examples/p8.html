@@ -1,0 +1,78 @@
+<template>
+  <style>
+    @font-face { font-family: "Pretendard"; src: url("assets/fonts/PretendardVariable.woff2") format("woff2"); font-weight: 100 900; }
+    #p8 { position: absolute; inset: 0; font-family: "Pretendard", sans-serif; color: #f3f4f5; background: #131209; overflow: hidden; }
+    .o { color: #ff6600; }
+    .chap { position: absolute; left: 48px; top: 40px; background: #1f1e17; border-radius: 14px; padding: 12px 22px; font-size: 28px; font-weight: 700; z-index: 5; }
+    .chap i { color: #ff6600; font-style: normal; margin-right: 10px; }
+    #a-t { position: absolute; left: 160px; top: 140px; font-size: 66px; font-weight: 800; letter-spacing: -0.03em; }
+    #count { color: #ff6600; display: inline-block; font-variant-numeric: tabular-nums; }
+    #track { position: absolute; left: 0; top: 420px; width: 3600px; height: 400px; }
+    #rail { position: absolute; left: 160px; top: 120px; width: 3300px; height: 8px; background: #38362b; border-radius: 4px; }
+    #fill { position: absolute; left: 160px; top: 120px; width: 3300px; height: 8px; background: #ff6600; border-radius: 4px; transform-origin: left center; }
+    .ev { position: absolute; top: 0; width: 360px; }
+    .ev .tm { font-size: 52px; font-weight: 900; color: #6c6a5f; }
+    .ev .dot { position: absolute; left: 0; top: 108px; width: 32px; height: 32px; border-radius: 50%; background: #38362b; }
+    .ev .wk { position: absolute; top: 170px; font-size: 40px; font-weight: 700; color: #8a8d93; white-space: nowrap; }
+    .ev .kd { position: absolute; top: 230px; font-size: 30px; font-weight: 700; color: #ff6600; opacity: 0; }
+    /* 대화 */
+    .bub { position: absolute; font-size: 46px; line-height: 1.5; padding: 30px 46px; border-radius: 36px; max-width: 1300px; }
+    #q { right: 160px; top: 260px; background: #ff6600; color: #131209; font-weight: 800; border-bottom-right-radius: 8px; }
+    #ans { left: 160px; top: 450px; background: #1f1e17; border: 2px solid #38362b; border-bottom-left-radius: 8px; }
+    #ans b { color: #ff6600; }
+    #src { position: absolute; left: 160px; top: 760px; font-size: 32px; font-weight: 700; color: #00a8fc; }
+    #ex { position: absolute; right: 160px; top: 780px; font-size: 28px; color: #8a8d93; border: 2px solid #4a4638; padding: 6px 16px; border-radius: 8px; }
+  </style>
+  <div id="p8" data-composition-id="p8" data-width="1920" data-height="1080">
+    <div class="chap"><i>P8</i>AI와 함께 운영</div>
+    <div id="sa" class="clip" data-start="0" data-duration="6.95" data-hold>
+      <div id="a-t">사람이 자리를 비워도 <span id="count">0</span><span class="o">개</span>의 예약 작업</div>
+      <div id="track">
+        <div id="rail"></div><div id="fill"></div>
+        <div class="ev" style="left:160px"><div class="tm">08:20</div><div class="dot"></div><div class="wk">장전 사전 점검</div><div class="kd">점검</div></div>
+        <div class="ev" style="left:560px"><div class="tm">08:31</div><div class="dot"></div><div class="wk">장전 상세 분석</div><div class="kd">리포트</div></div>
+        <div class="ev" style="left:960px"><div class="tm">08:50</div><div class="dot"></div><div class="wk">장기투자 전략 리포트</div><div class="kd">리포트</div></div>
+        <div class="ev" style="left:1460px"><div class="tm">매시 20분</div><div class="dot"></div><div class="wk">장중 매매·차단 감사</div><div class="kd">감사</div></div>
+        <div class="ev" style="left:2060px"><div class="tm">16:15</div><div class="dot"></div><div class="wk">장 마감 개선안</div><div class="kd">감사</div></div>
+        <div class="ev" style="left:2460px"><div class="tm">16:40</div><div class="dot"></div><div class="wk">매매일지</div><div class="kd">리포트</div></div>
+        <div class="ev" style="left:2860px"><div class="tm">16:45</div><div class="dot"></div><div class="wk">장기투자 복기·감사</div><div class="kd">감사</div></div>
+      </div>
+    </div>
+    <div id="sb" class="clip" data-start="6.9" data-duration="6.17" data-hold>
+      <div id="q" class="bub">오늘 왜 인버스를 더 사지 않았어?</div>
+      <div id="ans" class="bub"><span id="ans-t"></span></div>
+      <div id="src">근거: 매매 기록 · 진입 차단 inverse_too_late →</div>
+      <div id="ex">대화 예시</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const rev = (sel, at, d = 0.55) => tl.fromTo(sel, { clipPath: "inset(0 0 100% 0)", y: 36 }, { clipPath: "inset(0 0 -25% 0)", y: 0, duration: d, ease: "power4.inOut" }, at);
+    // A: 하루 시간 막대를 따라 카메라가 이동하고(timeline-travel), 지나는 작업이 켜짐
+    rev("#a-t", 0.9);
+    const c = document.querySelector("#count"), o = { v: 0 };
+    tl.to(o, { v: 15, duration: 0.7, ease: "power2.out", onUpdate: () => { c.textContent = Math.round(o.v); } }, 2.3);
+    tl.fromTo("#fill", { scaleX: 0 }, { scaleX: 1, duration: 4.6, ease: "none" }, 1.4);
+    tl.fromTo("#track", { x: 0 }, { x: -1720, duration: 4.6, ease: "power1.inOut" }, 1.4);
+    document.querySelectorAll("#sa .ev").forEach((ev, i) => {
+      const at = 1.4 + (i / 6) * 4.4;
+      tl.to(ev.querySelector(".tm"), { color: "#ff6600", duration: 0.2 }, at);
+      tl.to(ev.querySelector(".dot"), { backgroundColor: "#ff6600", scale: 1.3, duration: 0.2 }, at);
+      tl.to(ev.querySelector(".wk"), { color: "#f3f4f5", duration: 0.2 }, at);
+      tl.to(ev.querySelector(".kd"), { opacity: 1, duration: 0.2 }, at + 0.1);
+    });
+    tl.to("#sa", { opacity: 0, duration: 0.3 }, 6.65);
+    // B: 질문이 한 글자씩 입력되고, 답이 근거와 함께 나옴(type-and-filter)
+    const type = (sel, text, at, d) => {
+      const el = document.querySelector(sel), p = { n: 0 };
+      tl.to(p, { n: text.length, duration: d, ease: "none", onUpdate: () => { el.innerHTML = text.slice(0, Math.round(p.n)).replace("−3% 넘게", "<b>−3% 넘게</b>"); } }, at);
+    };
+    tl.fromTo("#q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, 7.4);
+    tl.fromTo("#ans", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 9.5);
+    type("#ans-t", "지수가 이미 −3% 넘게 빠져 있어서 인버스 진입 관문이 '늦음'으로 막았습니다. 근거는 매매 기록에 있습니다.", 9.6, 2.0);
+    tl.from("#src", { opacity: 0, y: 10, duration: 0.3 }, 11.0);
+    tl.from("#ex", { opacity: 0, duration: 0.3 }, 7.6);
+    window.__timelines["p8"] = tl;
+  </script>
+</template>

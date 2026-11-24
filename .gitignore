@@ -2,8 +2,8 @@
 __pycache__/
 node_modules/
 # 음원은 재배포할 수 없어 저장소에 넣지 않는다(처음 쓸 때 자동으로 받음)
-skill/service-video-studio/assets/bgm/
-skill/service-video-studio/assets/sfx/
+skills/video-showcase/assets/bgm/
+skills/video-showcase/assets/sfx/
 # 영상 작업 폴더
 work/
 *.mp4

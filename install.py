@@ -13,8 +13,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-NAME = "service-video-studio"
-SRC = Path(__file__).resolve().parent / "skill" / NAME
+NAME = "video-showcase"
+SRC = Path(__file__).resolve().parent / "skills" / NAME
 
 
 def link(home: Path):

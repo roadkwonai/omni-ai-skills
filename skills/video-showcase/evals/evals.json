@@ -1,5 +1,5 @@
 {
- "skill_name": "service-video-studio",
+ "skill_name": "video-showcase",
  "evals": [
   {"id": 0, "name": "short-video-end-to-end", "prompt": "동네 미용실 예약 서비스 '오늘약속' 소개 영상을 만들어줘. 25~40초, 한국어 내레이션, 유튜브에 올릴 거야. 서비스는 http://127.0.0.1:8777/ 에 떠 있고 설명은 evals/files/demo-service/README.md 에 있어. 중간에 묻지 말고 끝까지 알아서 만들고, 게시는 하지 마. FISH_AUDIO_API_KEY는 환경변수에 있어(값은 출력 금지).", "expected_output": "final.mp4 + 보고", "files": ["files/demo-service/index.html", "files/demo-service/README.md"]},
   {"id": 1, "name": "plan-with-approval", "prompt": "오늘약속(http://127.0.0.1:8777/, 설명 evals/files/demo-service/README.md) 포트폴리오 소개 영상 1분짜리 만들고 싶어. 지난번 Omni 영상처럼. 일단 시작해줘.", "expected_output": "기획을 보여 주고 승인 지점에서 멈춤", "files": ["files/demo-service/index.html", "files/demo-service/README.md"]}

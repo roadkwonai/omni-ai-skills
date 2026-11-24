@@ -16,11 +16,11 @@ import time
 import uuid
 from pathlib import Path
 
-from lib import SKILL, dur, load, run, save
+from lib import dur, load, run, save
 from reading import plain
 
 FOLDERS = {"s2-pro": "s2-pro-8bit", "drama-3": "drama-3-4bit"}
-CONFIG = Path.home() / ".config" / "service-video-studio" / "config.json"
+CONFIG = Path.home() / ".config" / "video-showcase" / "config.json"
 LICENSE = {"drama-3": "Drama 3: 최근 12개월 매출 50만 달러 미만이면 상업 이용 가능(Fish Audio Community License). 실존 인물을 동의 없이 흉내 내지 않는다.",
            "s2-pro": "S2 Pro: 연구·비상업 용도만(Fish Audio Research License). 수익이 목적인 영상에는 쓰지 않는다."}
 GENDERS = {"female": "여성", "male": "남성"}

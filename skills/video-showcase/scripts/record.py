@@ -13,6 +13,8 @@ from lib import load, work
 W = work()
 name, url = sys.argv[2], sys.argv[3]
 out = W / "capture" / "out" / name
+if not shutil.which("ego-browser"):
+    raise SystemExit(f"ego-browser가 없어 녹화할 수 없음 — 직접 찍은 1920×1080 30fps 영상을 {W}/assets/clips/{name}.mp4에 넣고 가림을 확인한다")
 shutil.rmtree(out, ignore_errors=True)
 out.mkdir(parents=True)
 cfg = load(W / "capture" / "mask.config.json")

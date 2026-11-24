@@ -2,7 +2,7 @@
 
 remotion/src/shots/<이름>/에 코드(+공용 부품·그림), 카드 설명은 CARD.md. 컴포지션 이름과 길이를 출력한다.
 가져온 그대로는 원본의 글꼴·색·문구·가짜 화면이 나온다. SPEC에 맞게 고친 뒤 still로 확인하고 렌더한다(references/motion.md).
-원본은 ~/.cache/service-video-studio/에 확인한 커밋으로 한 번만 받는다. shotcraft 코드는 Apache-2.0(LICENSE-video-shotcraft)."""
+원본은 ~/.cache/video-showcase/에 확인한 커밋으로 한 번만 받는다. shotcraft 코드는 Apache-2.0(LICENSE-video-shotcraft)."""
 import json
 import os
 import re
@@ -15,7 +15,7 @@ from lib import SKILL, load, work
 
 PIN = "075b548c2405a07b77129eb448b0b504fc60dea3"
 REPO = os.environ.get("SHOTCRAFT", "https://github.com/Vincentwei1021/video-shotcraft.git")
-CACHE = Path.home() / ".cache" / "service-video-studio" / "video-shotcraft"
+CACHE = Path.home() / ".cache" / "video-showcase" / "video-shotcraft"
 
 
 def source():

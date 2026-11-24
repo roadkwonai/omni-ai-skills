@@ -1,6 +1,6 @@
 ---
-name: service-video-studio
-description: 서비스·앱·대시보드·오픈소스 프로젝트를 소개하는 한국어 내레이션 영상(포트폴리오·제품 소개·데모, 1~5분)을 기획부터 유튜브 게시까지 같은 절차와 품질로 만든다. 실제 화면 녹화와 민감 정보 가림, 대본 검수, Fish Audio TTS, 노래방식 자막, HyperFrames 모션, video-shotcraft 스포트라이트 샷, 배경음·효과음, 기계 검수, 썸네일까지 도구가 들어 있다. "서비스 소개 영상 만들어줘", "포트폴리오 영상", "데모 영상", "프로젝트 홍보 영상", "Omni 영상처럼 만들어줘", "지난번 영상이랑 같은 퀄리티로", "유튜브에 올릴 소개 영상", "기존 소개 영상 업데이트", "배경음악 바꿔줘", "오프닝 레시피를 다른 걸로"처럼 실제로 돌아가는 제품을 보여 주는 영상 요청이면 hyperframes·general-video·yt-* 보다 이 스킬을 먼저 쓴다. 음악 쇼릴·쇼츠·광고·AI 생성 영상·자막만 붙이기에는 쓰지 않는다.
+name: video-showcase
+description: 서비스·앱·대시보드·오픈소스 프로젝트를 소개하는 한국어 내레이션 영상(포트폴리오·제품 소개·데모, 1~5분)을 기획부터 유튜브 게시까지 같은 절차와 품질로 만든다. 실제 화면 녹화와 민감 정보 가림, 대본 검수, 로컬(Drama 3·S2 Pro)·API 내레이션, 노래방식 자막, HyperFrames 모션, Remotion·video-shotcraft 샷, 배경음·효과음 자동 선택, 기계 검수, 썸네일까지 도구가 들어 있다. "서비스 소개 영상 만들어줘", "쇼케이스 영상", "포트폴리오 영상", "데모 영상", "프로젝트 홍보 영상", "Omni 영상처럼 만들어줘", "지난번 영상이랑 같은 퀄리티로", "유튜브에 올릴 소개 영상", "기존 소개 영상 업데이트", "배경음악 바꿔줘", "내레이션 목소리 바꿔줘", "오프닝 레시피를 다른 걸로"처럼 실제로 돌아가는 제품을 보여 주는 영상 요청이면 hyperframes·general-video·yt-* 보다 이 스킬을 먼저 쓴다. 음악 쇼릴·쇼츠·광고·AI 생성 영상·자막만 붙이기에는 쓰지 않는다.
 ---
 
 # 서비스 소개 영상 제작
@@ -62,7 +62,7 @@ S1 기획 → [승인 1] → S2 대본·검수 → S3 음성·시간표·자막 
 
 `python3 $S/new_project.py $W "<제목>" 25-40`(목표 초)로 폴더를 만들고 `script.json`의 `parts`·`lines`를 채운다. 문장마다 `cap`(자막), `kind`(말하는 내용의 종류), `screen`(보이는 것), `fact`(근거). 한 문장은 한 장면에서 한 가지만 말한다.
 
-`python3 $S/review_script.py $W` 가 문제 없음이 될 때까지 고친다. 그다음 사실 대조(문장마다 근거를 실제로 열어 본다)와 korean-polish 스킬 기준의 문장 검토를 하고 사용자에게 대본을 보여 준다. 음성을 만든 뒤 대본을 고치면 장면까지 다시 맞춰야 한다. → `references/script-voice.md`
+`python3 $S/review_script.py $W` 가 문제 없음이 될 때까지 고친다. 그다음 사실 대조(문장마다 근거를 실제로 열어 본다)와 문장 검토(`korean-polish` 같은 한국어 교정 스킬이 있으면 그 기준)를 하고 사용자에게 대본을 보여 준다. 음성을 만든 뒤 대본을 고치면 장면까지 다시 맞춰야 한다. → `references/script-voice.md`
 
 **레시피와 소리는 자동으로 고른다.** 제품의 분위기를 `mood`(`calm` 차분·`heavy` 묵직·`bright` 경쾌·`fast` 빠름)로 정하고 `python3 $S/pick.py $W`를 돌리면 문장의 `kind`에 어울리는 레시피, 배경음, 효과음 세트를 골라 `RECIPES.md`에 이유와 함께 적는다. 묻지 않고 이 선택으로 진행하되, 승인 지점마다 `RECIPES.md`를 함께 보여 주고 "바꾸고 싶은 장면·음악을 말하면 그것만 바꾼다"고 알린다. 고르는 법과 바꾸는 법은 아래 '레시피와 소리'.
 
@@ -89,7 +89,7 @@ python3 $S/make_index.py $W             # index.html, 장면 틀
 
 ### S4 스토리보드 → `boards/storyboard.html`
 
-문장마다 정지 스케치 한 장(핵심 화면), 시각, 내레이션, 움직임, 쓸 방식(녹화 / SpotTour / HyperFrames 모션). 장면 종류가 세 번 이어서 같지 않게 섞는다. `SPEC.md`(목표 한 문장·색·글꼴·움직임·금지)를 이 제품에 맞게 채운다. 사용자가 "녹화 영상이 없다"고 나중에 놀라지 않도록, **어느 장면이 실제 녹화이고 어느 장면이 정지 화면+카메라인지 표에 분명히 적는다.**
+문장마다 정지 스케치 한 장(핵심 화면), 시각, 내레이션, 움직임, 쓸 방식(`RECIPES.md`의 레시피). 장면 종류가 세 번 이어서 같지 않게 섞는다. `SPEC.md`(목표 한 문장·색·글꼴·움직임·금지)를 이 제품에 맞게 채운다. 사용자가 "녹화 영상이 없다"고 나중에 놀라지 않도록, **어느 장면이 실제 녹화이고 어느 장면이 정지 화면+카메라인지 표에 분명히 적는다.**
 
 ### S5 녹화·가림 → `assets/clips/*.mp4`, `assets/img/*.jpg`
 
@@ -103,7 +103,7 @@ python3 $S/record.py $W p2 http://127.0.0.1:포트/   # → assets/clips/p2.mp4 
 
 ### S6 장면 제작 → `compositions/pN.html`
 
-파일럿으로 성격이 다른 두 파트(도식 하나, 실제 화면 하나)를 먼저 끝까지 만들어 보여 준다. 세 가지 재료를 섞는다.
+파일럿으로 성격이 다른 두 파트(도식 하나, 실제 화면 하나)를 먼저 끝까지 만들어 보여 준다. 네 가지 재료를 섞는다.
 
 | 재료 | 언제 |
 | --- | --- |
@@ -112,9 +112,9 @@ python3 $S/record.py $W p2 http://127.0.0.1:포트/   # → assets/clips/p2.mp4 
 | **다른 shotcraft 샷** | 사용자가 이름으로 고르거나 위 것으로 안 될 때 `add_shot.py`로 가져와 고친다 |
 | **HyperFrames 모션** | 구조·흐름·숫자·조건처럼 화면에 없는 것을 설명할 때. 장면 틀의 `rev·count·draw·cam·slam` |
 
-완성 장면 예가 `assets/examples/`에 있다(p1 통계 카드, p2 구조·흐름, p4 녹화+입력 모음+SpotTour+기록 카드, p5 단계·스위치·한도, p9 마무리). 새 장면을 쓰기 전에 성격이 비슷한 것을 하나 읽는다. 안의 이미지·영상 경로와 문구는 기준작 것이라 바꿔 쓴다.
+완성 장면 예가 `assets/examples/`에 있다(p1 통계 카드, p2 구조·흐름, p4 녹화+입력 모음+SpotTour+기록 카드, p5 단계·스위치·한도, p8 일정·대화, p9 마무리). 새 장면을 쓰기 전에 성격이 비슷한 것을 하나 읽는다. 안의 이미지·영상 경로와 문구는 기준작 것이라 바꿔 쓴다.
 
-→ `references/motion.md` (SpotTour 좌표 재는 법, HyperFrames 함정, 장면별 처방)
+→ `references/motion.md` (샷 값과 좌표 재는 법, HyperFrames 함정, 장면별 처방)
 
 ### S7 합성·소리
 
@@ -134,7 +134,7 @@ python3 $S/mix_audio.py $W renders/vo.mp4 renders/final.mp4
 1. `qa/frames/*.jpg`를 원본 크기로 보며 가림 목록을 하나씩 대조한다. 공개하면 되돌릴 수 없으니 의심스러우면 다시 찍는다.
 2. 화면 글자 ↔ 내레이션 ↔ 이름표가 같은 말을 하는지 본다. 다르면 실제 화면 글자 쪽으로 맞춘다.
 3. `qa/sync`의 강조 단어가 출력과 같은지 본다.
-4. `watch` 스킬에 최종본 경로와 `--engine local`을 주어 처음부터 끝까지 본다(Gemini 엔진은 원본을 밖으로 올리니 쓰지 않는다). 건너뛰지 않는다. 듣지 못했으면 못 들었다고 보고한다.
+4. 처음부터 끝까지 본다. `watch` 스킬이 있으면 최종본 경로와 `--engine local`을 준다(Gemini 엔진은 원본을 밖으로 올리니 쓰지 않는다). 건너뛰지 않는다. 듣지 못했으면 못 들었다고 보고한다.
 
 보고에는 확인한 것과 확인하지 못한 것을 나눠 적고, 화면에 남아 있는 민감할 수 있는 값은 작아 보여도 모두 알린다. 확정되면 `output/`에 최종본과 공유용(1280px)을 두고, `PLAN.md`에 제작 이력(판·바뀐 점·다시 만드는 순서)을 남긴다.
 
@@ -149,7 +149,7 @@ python3 $S/mix_audio.py $W renders/vo.mp4 renders/final.mp4
 | 자동으로 고르기(여러 번 돌려도 됨) | `python3 $S/pick.py $W` |
 | 사용자가 고른 것으로 고정 | `python3 $S/pick.py $W --set S04=CrashZoom P9=Lockup --bgm house-vibez --kit soft --mood bright` |
 | 지정을 풀고 다시 자동 | `python3 $S/pick.py $W --auto S04 bgm kit` |
-| 고를 수 있는 것 | `python3 $S/pick.py $W --list [낱말]` (shotcraft 124개 포함, 사용자에게는 한국어로 옮겨 보여 준다) |
+| 고를 수 있는 것 | `python3 $S/pick.py $W --list [낱말]` (shotcraft 카드 124개, 가져올 수 있는 것 122개. 사용자에게는 한국어로 옮겨 보여 준다) |
 | 배경음 들어 보기 | `python3 $S/mix_audio.py $W --preview` → `previews/*.mp3`(내레이션에 후보 곡을 깐 20초) |
 | shotcraft 원본 샷 가져오기 | `python3 $S/add_shot.py $W <이름>` |
 
@@ -175,6 +175,6 @@ python3 $S/mix_audio.py $W renders/vo.mp4 renders/final.mp4
 ## 참고 문서
 
 - `references/capture.md` — 녹화와 가림. S1에서 가림 목록을 정할 때와 S5에서 읽는다.
-- `references/script-voice.md` — 대본 규칙, 읽기 변환, Fish Audio, 자막. S2·S3.
-- `references/motion.md` — 장면 설계, SpotTour, HyperFrames 함정, 렌더. S4·S6.
+- `references/script-voice.md` — 대본 규칙, 읽기 변환, 로컬·API 음성, 자막. S2·S3.
+- `references/motion.md` — 장면 설계, kind, Remotion 샷, shotcraft 가져오기, HyperFrames 함정, 렌더. S4·S6.
 - `references/publish.md` — 유튜브·썸네일·README·랜딩. S9.

@@ -1,5 +1,5 @@
 {
-  "name": "service-video",
+  "name": "video-showcase",
   "private": true,
   "type": "module",
   "scripts": {

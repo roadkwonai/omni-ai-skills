@@ -48,7 +48,7 @@
 | log · schedule | 기록 · 일정 | 카드 쌓기 · 시간 막대 |
 | disclaimer · outro | 면책 · 마무리 | 큰 글자 · Lockup |
 
-`hf:`로 시작하는 것은 HyperFrames 장면이다(`assets/examples/`: title·count·table은 p1, flow는 p2, converge·cards는 p4, gates·switches는 p5, outro는 p9).
+`hf:`로 시작하는 것은 HyperFrames 장면이다(`assets/examples/`: title·count·table은 p1, flow는 p2, converge·cards는 p4, gates·switches는 p5, timeline은 p8, outro는 p9).
 
 ## 값만 넣는 샷
 
