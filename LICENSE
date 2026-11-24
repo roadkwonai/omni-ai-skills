@@ -19,9 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-Files under skill/service-video-studio/assets/remotion/src named PageCam2D.tsx,
-Polish.tsx and SpotTour.tsx are derived from video-shotcraft (Apache-2.0); see
-assets/remotion/LICENSE-video-shotcraft. Third-party fonts and audio keep their
-own licenses; see skill/service-video-studio/assets/NOTICE.md.

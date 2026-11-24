@@ -1,3 +1,5 @@
+이 폴더의 다음 파일은 프로젝트의 MIT 라이선스가 아니라 각자의 라이선스를 따른다.
+
 - `remotion/src/PageCam2D.tsx`, `Polish.tsx`, `SpotTour.tsx`(고쳐 씀), `Shots.tsx`(방식을 따라 새로 씀): video-shotcraft 075b548, Apache-2.0 (`remotion/LICENSE-video-shotcraft`)
 - `fonts/PretendardVariable.woff2`: Pretendard 1.309, SIL OFL 1.1 (`fonts/OFL.txt`)
 - 배경음·효과음은 저장소에 없다. `lib.audio()`가 처음 쓸 때 Mixkit에서 받아 해시를 확인한다(`sound.json` files). 조건은 2026-11-24에 원문으로 확인했다.
